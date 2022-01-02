@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+<body>
+<form action="/signup" method="post">
+    <h1> REGISTTRATION: </h1>
+    <label>email</label>
+    <input type="email" name="email" placeholder="Enter unique email" />
+    <br>
+    <label>password</label>
+    <input type="password" name="pwd" placeholder="Enter password"/>
+    <br>
+    <input type="submit" name="login" value="Signup">
+</form>
+
+{% if error %}
+{{ errormsg }}
+{% endif %}
+
+
+</body>
+</html>

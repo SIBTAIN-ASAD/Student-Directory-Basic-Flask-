@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>LOG IN PAGE</h1>
+<form action="/login" method="post">
+    <br>
+    <label>email</label>
+    <input type="email" name="email"/>
+    <br>
+    <br>
+    <label>password</label>
+    <input type="password" name="pwd"/>
+    <br>
+    <br>
+    <input type="submit" name="login" value="login">
+</form>
+<br>
+<a href="/signupform" > Signup</a>
+<br>
+
+<form action="/data" method="post">
+    <label>Get User Data </label>
+    <input type="submit" name="data" value="data">
+</form>
+<br>
+<br>
+{% if error %}
+{{ errormsg }}
+{% endif %}
+
+</body>
+</html>

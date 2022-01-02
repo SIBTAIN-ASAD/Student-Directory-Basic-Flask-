@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<h4>Email:    {{_email}} </h4>
+<h4>Password: {{_passwd}} </h4>
+<h2>Here is your data</h2>
+
+<table border= 2>
+
+{% for lst in _curr %}
+<tr>
+
+<td>Name:       {{lst[2]}} </td>
+<td>Contact:    {{lst[3]}}</td>
+<td>CIty:       {{lst[4]}}</td>
+<td>Profesion:  {{lst[5]}}</td>
+<td>Contact ID: {{lst[0]}}</td>
+<td>User ID:    {{lst[1]}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+
+<!-- <h3>  </h3> -->
+<form  action="/create" method="post">  
+  <h1> Add contact: </h1>
+    <label>Name       :</label>
+    <input type="text" name="name" />
+    <br>
+    <br>
+    <label>Mobile     :</label>
+    <input type="text" name="mobile" />
+    <br>
+    <br>
+    <label>City       :</label>
+    <input type="text" name="city" />
+    <br>
+    <br>
+    <label>Profession :</label>
+    <input type="text" name="pro" />
+    <br>
+    <br>
+    <input type="submit" name="add" value="Create">
+</form>
+
+
+
+<!-- <form  action="/delete" method="post">  
+
+    <label>Enter name you want to delete: </label>
+    <input type="text" name="name" />
+
+    <input type="submit" name="add" value="delete">
+</form> -->
+
+<br>
+
+<form  action="/update" method="post">  
+
+    <label>Enter contact_ID you want to update: </label>
+    <input type="text" name="name" />
+    <input type="submit" name="add" value="check_update">
+    <br><br><br>
+</form>
+
+
+<form  action="/logout" method="post">  
+    <input type ="hidden" name="name" />
+    <input type="submit" name="add" value="logout">
+    <br><br><br>
+</form>
+
+
+{% if error %}
+<h3>{{ errormsg }} </h3>
+{% endif %}
+
+
+</body>
+</html>
