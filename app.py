@@ -132,10 +132,12 @@ def update_contact():
 
 @app.route("/updateit" , methods=["POST"])
 def update_now():
-    usid = request.cookies.get("user_id")
-    usid = int(usid)
-    cid = request.cookies.get("cid")
-    cid = int(cid)
+    try:
+        usid = int(request.cookies.get("user_id"))
+        cid = int(request.cookies.get("cid"))
+    except (TypeError, ValueError):
+        return render_template("Login.html", error=True,
+                               errormsg="Session ended, please enter again")
 
     name = request.form["name"]
     mb = request.form["mobile"]
@@ -178,16 +180,15 @@ def new_data():
     data = model.getAllusersData()
     return render_template("showdata.html", ls = data)
 
-if __name__ == "__main__":
-    app.run(debug = True, port = 5000)
-    
-
-
 @app.route("/logout", methods=["POST"])
 def logout():
-    # response = make_response(render_template("Login.html",error = True, errormsg = "user loged out"))
-    # response.delete_cookie("user_id")
-    # response.delete_cookie("cid")
-    return render_template("Login.html",error = True, errormsg = "user loged out")
+    response = make_response(render_template(
+        "Login.html", error=True, errormsg="You have been logged out"
+    ))
+    response.delete_cookie("user_id")
+    response.delete_cookie("cid")
+    return response
 
-    # return  # jinja templating agent
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
